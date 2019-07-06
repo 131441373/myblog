@@ -4,9 +4,22 @@
 </head>
 
 <body>
-    <p><span onclick="plusminus(this,'menu1')">+</span>点击展开</p>
-    <div id="menu1" style="display:none">
-        <p> 子目录1 </p>
-        <p> 子目录2 </p>
+    <p><span onclick="plusminus(this,'blog')">+</span>blog</p>
+    <div id="blog" style="display:none">
+        <p><span onclick="plusminus(this,'html')">+</span>html</p>
+        <div id="html" style="display:none">
+            <p>head</p>
+            <p>body</p>
+        </div>
+        <p><span onclick="plusminus(this,'css')">+</span>js</p>
+        <div id="css" style="display:none">
+            <p>selecter</p>
+            <p>attribute</p>
+        </div>
+        <p><span onclick="plusminus(this,'js')">+</span>css</p>
+        <div id="js" style="display:none">
+            <p>grammar</p>
+            <p>function</p>
+        </div>
     </div>
 </body>
