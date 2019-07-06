@@ -19,10 +19,23 @@ from django.conf import settings
 import os
 
 def dfs(path):
-    pass
+    l = os.listdir(path)
+    res = ""
+    for x in l:
+        y = os.path.join(path,x)
+        idname = y.replace('/','_')
+        if os.path.isdir(y):
+#            strr = " onclick='plusminus(this,\'%s\')' %s" % (y, x) 
+#            return "<p>%s</p>" % strr
+            res = res + "<dd><p><span onclick=\"plusminus(this,\'%s\')\">+</span>%s</p>" % (idname,x)
+            res = res + "<dl id=\"%s\" style=\"display:none\">" % idname
+            res = res + dfs(y)
+            res = res + "</dl></dd>"
+    return res
+
 
 def getdir():
-    return {'articlemenu':dfs(os.path.join(settings.BASE_DIR,'static/documents'))}
+    return {'articlemenu':"<dl>"+dfs(os.path.join(settings.BASE_DIR,'static/documents'))+"</dl>"}
 
 urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
