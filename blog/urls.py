@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.shortcuts import render
 
+def getdir():
+    return {'name':'<dl><dd><p>a</p></dd><dd><p>b</p></dd></dl>'}
+
 urlpatterns = [
-    url(r'^home/', lambda request:render(request,'home.html')),
+    url(r'^home/', lambda request:render(request,'home.html',getdir())),
 ]
