@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.shortcuts import render
+from django.conf import settings
+import os
+
+def dfs(path):
+    pass
 
 def getdir():
-    return {'name':'<dl><dd><p>a</p></dd><dd><p>b</p></dd></dl>'}
+    return {'articlemenu':dfs(os.path.join(settings.BASE_DIR,'static/documents'))}
 
 urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
