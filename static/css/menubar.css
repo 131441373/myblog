@@ -1,10 +1,11 @@
 #menubar {
     width:19%;
-    height:5000px;
+    height:100%;
     float:left;
     background:rgb(245,245,245);
     box-shadow:0px 0px 4px #999999;
+    overflow: scroll;
 }
 #menubar dd {
-    margin-left: 10px;
+    margin-left:10px;
 }
