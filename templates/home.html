@@ -4,22 +4,28 @@
 </head>
 
 <body>
-    <p><span onclick="plusminus(this,'blog')">+</span>blog</p>
-    <div id="blog" style="display:none">
-        <p><span onclick="plusminus(this,'html')">+</span>html</p>
-        <div id="html" style="display:none">
-            <p>head</p>
-            <p>body</p>
-        </div>
-        <p><span onclick="plusminus(this,'css')">+</span>js</p>
-        <div id="css" style="display:none">
-            <p>selecter</p>
-            <p>attribute</p>
-        </div>
-        <p><span onclick="plusminus(this,'js')">+</span>css</p>
-        <div id="js" style="display:none">
-            <p>grammar</p>
-            <p>function</p>
-        </div>
-    </div>
+    <dl>
+    <dd>
+        <p><span onclick="plusminus(this,'blog')">+</span>blog</p>
+        <dl id="blog" style="display:none">
+            <dd>
+                <p><span onclick="plusminus(this,'html')">+</span>html</p>
+                <dl id="html" style="display:none">
+                    <dd>
+                        <p>1</p>
+                        <p>2</p>
+                    </dd>
+                </dl>
+            </dd>
+            <dd>
+                <p><span onclick="plusminus(this,'css')">+</span>css</p>
+                <dl id="css" style="display:none">
+                    <dd>
+                        <p>3</p>
+                        <p>4</p>
+                    </dd>
+                </dl>
+            </dd>
+    </dd>    
+    </dl>
 </body>
