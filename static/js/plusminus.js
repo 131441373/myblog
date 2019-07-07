@@ -1,4 +1,8 @@
 function plusminus(button, tar) {
+    if (flag == 1) {
+        alert('请先确定是否保存');
+        return;
+    }
     var target = document.getElementById(tar);
     if (target.style.display != "none") {
         target.style.display = "none";
