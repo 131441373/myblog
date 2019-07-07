@@ -16,8 +16,10 @@
     
     <div id="content">
         <iframe id="frame" src="/static/documents/index.html"></iframe>
-        <textarea id="editor" style="display:none"></textarea>
+        <form action="/save/" method="POST" id="mdfile">
+            <input type="submit" id="savebutton" style="display:none; position:absolute; right:0; top:30px;" value="保存">
+        </form>
+        <textarea id="editor" style="display:none" form="mdfile"></textarea>
         <button id="mdf" onclick="changemode()" style="position:absolute; top:0; right:0">修改</button>
-        <button id="save" onclick="save()" style="position:absolute; top:30px; right:0; display:none">保存</button>
     </div>
 </body>
