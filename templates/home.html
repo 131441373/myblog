@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <script src="/static/js/plusminus.js"></script>
-    <script src="/static/js/display.js"></script>
+    <script src="/static/js/changemode.js"></script>
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/menubar.css">
     <link rel="stylesheet" href="/static/css/content.css">
@@ -12,5 +12,9 @@
         {{articlemenu | safe}}
     </div>
     
-    <iframe id="content" src="/static/documents/index.html"></iframe>
+    <div id="content">
+        <iframe src="/static/documents/index.html"></iframe>
+        <textarea style="display:none"></textarea>
+        <button onclick="changemode(this)" style="position:absolute; top:0; right:0">修改</button>
+    </div>
 </body>
