@@ -13,5 +13,4 @@ function plusminus(button, tar) {
 
     var disp = document.getElementById("content");
     disp.children[0].src = '/' + tar.replace(/_/g,'/') + '/' + 'index.html';
-    disp.children[1].value = '/' + tar.replace(/_/g,'/') + '/' + 'index.md';
 }
