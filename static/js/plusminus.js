@@ -10,4 +10,7 @@ function plusminus(button, tar) {
         button.firstChild.innerHTML = '-';
         button.style.background = "rgb(116, 236, 216)";
     }
+
+    var disp = document.getElementById("content");
+    disp.src = '/' + tar.replace(/_/g,'/') + '/' + 'index.html';
 }

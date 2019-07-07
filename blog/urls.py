@@ -33,7 +33,7 @@ def dfs(path):
 
 
 def getdir():
-    return {'articlemenu':"<dl>"+dfs(os.path.join(settings.BASE_DIR,'static/documents'))+"</dl>"}
+    return {'articlemenu':"<dl>"+dfs('static/documents')+"</dl>"}
 
 urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),

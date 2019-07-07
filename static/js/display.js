@@ -1,3 +1,0 @@
-function loadmarkdown() {
-    document.write
-}
