@@ -3,6 +3,7 @@ function changemode(button) {
     var editor = document.getElementById("content").children[1];
     if (editor.style.display == 'none') {
         frame.style.display = 'none';
+        editor.value = frame.src.replace(/html/,'md');
         editor.style.display = 'block';
         button.innerHTML = '不保存';
     }
