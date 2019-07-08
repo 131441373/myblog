@@ -15,5 +15,5 @@ function plusminus(button, tar) {
         button.style.background = "rgb(116, 236, 216)";
     }
 
-    $('#frame').attr('src','/' + tar.replace(/_/g,'/') + '.html');
+    $('#frame').attr('src','/article/' + tar);
 }

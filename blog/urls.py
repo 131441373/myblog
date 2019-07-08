@@ -46,20 +46,29 @@ def getdir():
     res = res + "</dl>"
     return {'articlemenu':res}
 
+def pathchg(path):
+    path = path.replace('_', '/').strip('/')
+    return os.path.join(settings.BASE_DIR,path+'.md')
+
 def save(request, path):
     timestr = datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8))).strftime("%Y%m%d%H%M%S")
-    path = path.replace('_', '/').strip('/')
-    path = path + '.md'
-    path = os.path.join(settings.BASE_DIR,path)
+    path = pathchg(path)
     os.remove(path)
+    os.remove(path.split('.')[0] + '.html')
     path = os.path.join(os.path.dirname(path), 'index%s.md'%timestr)
     f = request.POST.get('file')
-    F = open(path,'w')
-    F.write(f)
-    F.close()
+    with open(path, 'w') as F:
+        F.write(f)
     return HttpResponse(path)
+
+def display(request, path):
+    path = pathchg(path)
+    with open(path, 'r') as F:
+        f = F.read()
+    return render(request,'article.html',{'content':f})
 
 urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
     url(r'^save/(\w+)', save),
+    url(r'^article/(\w+)', display),
 ]
