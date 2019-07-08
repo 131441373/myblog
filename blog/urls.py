@@ -20,20 +20,30 @@ import os
 
 def dfs(path):
     l = os.listdir(path)
-    res = ""
     for x in l:
         y = os.path.join(path,x)
-        idname = y.replace('/','_')
-        if os.path.isdir(y):
-            res = res + "<dd><p onclick=\"plusminus(this,\'%s\')\"><span>+</span>%s</p>" % (idname,x)
+        if os.path.isfile(y) and os.path.basename(y).split('.')[1]=='md':
+            idname = (y.split('.')[0]).replace('/','_')
+            res = "<dd><p onclick=\"plusminus(this,\'%s\')\"><span>+</span>%s</p>" % (idname, os.path.basename(path))
             res = res + "<dl id=\"%s\" style=\"display:none\">" % idname
+    for x in l:
+        y = os.path.join(path,x)
+        if os.path.isdir(y):
             res = res + dfs(y)
-            res = res + "</dl></dd>"
+    res = res + "</dl></dd>"
     return res
 
 
 def getdir():
-    return {'articlemenu':"<dl>"+dfs('static/documents')+"</dl>"}
+    res = "<dl>"
+    path = "static/documents"
+    l = os.listdir(path)
+    for x in l:
+        y = os.path.join(path, x)
+        if os.path.isdir(y):
+            res = res + dfs(y)
+    res = res + "</dl>"
+    return {'articlemenu':res}
 
 def save(request, path):
     path = path.replace('_', '/').strip('/')
