@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 from django.conf import settings
 import os
 
@@ -35,6 +35,16 @@ def dfs(path):
 def getdir():
     return {'articlemenu':"<dl>"+dfs('static/documents')+"</dl>"}
 
+def save(request, path):
+    path = path.replace('_', '/')
+    path = os.path.join(os.path.join(settings.BASE_DIR,path), 'index.md')
+    f = request.POST.get('file')
+    F = open(path,'w')
+    F.write(f)
+    F.close()
+    return HttpResponse("success")
+
 urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
+    url(r'^save/(\w+)', save),
 ]

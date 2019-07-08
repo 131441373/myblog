@@ -16,10 +16,11 @@
     
     <div id="content">
         <iframe id="frame" src="/static/documents/index.html"></iframe>
-        <form action="/save/" method="POST" id="mdfile">
+        <form action="/save/static_documents" method="POST" id="mdfile">
+            {% csrf_token %}
             <input type="submit" id="savebutton" style="display:none; position:absolute; right:0; top:30px;" value="保存">
         </form>
-        <textarea id="editor" style="display:none" form="mdfile"></textarea>
+        <textarea id="editor" name="file" style="display:none" form="mdfile"></textarea>
         <button id="mdf" onclick="changemode()" style="position:absolute; top:0; right:0">修改</button>
     </div>
 </body>
