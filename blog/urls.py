@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.shortcuts import render,HttpResponse
 from django.conf import settings
 import os
+from datetime import datetime, timezone, timedelta
 
 def dfs(path):
     l = os.listdir(path)
@@ -46,9 +47,12 @@ def getdir():
     return {'articlemenu':res}
 
 def save(request, path):
+    timestr = datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8))).strftime("%Y%m%d%H%M%S")
     path = path.replace('_', '/').strip('/')
     path = path + '.md'
     path = os.path.join(settings.BASE_DIR,path)
+    os.remove(path)
+    path = os.path.join(os.path.dirname(path), 'index%s.md'%timestr)
     f = request.POST.get('file')
     F = open(path,'w')
     F.write(f)
