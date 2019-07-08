@@ -16,7 +16,7 @@
     
     <div id="content">
         <iframe id="frame" src="/static/documents/index.html"></iframe>
-        <form action="/save/static_documents" method="POST" id="mdfile">
+        <form action="/save/static_documents" method="POST" id="mdfile" onsubmit="save()">
             {% csrf_token %}
             <input type="submit" id="savebutton" style="display:none; position:absolute; right:0; top:30px;" value="保存">
         </form>

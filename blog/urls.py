@@ -36,13 +36,14 @@ def getdir():
     return {'articlemenu':"<dl>"+dfs('static/documents')+"</dl>"}
 
 def save(request, path):
-    path = path.replace('_', '/')
-    path = os.path.join(os.path.join(settings.BASE_DIR,path), 'index.md')
+    path = path.replace('_', '/').strip('/')
+    path = path + '.md'
+    path = os.path.join(settings.BASE_DIR,path)
     f = request.POST.get('file')
     F = open(path,'w')
     F.write(f)
     F.close()
-    return HttpResponse("success")
+    return HttpResponse(path)
 
 urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
