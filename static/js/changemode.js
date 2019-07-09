@@ -9,7 +9,12 @@ function changemode() {
         $('#savebutton').css('display','block');
         var str = frame.src.replace(/\/article/,'').replace(/_/g,'/') + '.md';
         if (loaded == 0) {
-            $('#editor').load(str);
+            $("#editor").load(str,function(responseTxt,statusTxt,xhr){
+                if(statusTxt=="success")
+                    document.getElementById('editor').value=document.getElementById('editor').defaultValue;
+                if(statusTxt=="error")
+                    alert("Error: "+xhr.status+": "+xhr.statusText);
+            });
             loaded = 1;
         }
         else {
