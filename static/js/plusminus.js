@@ -1,4 +1,5 @@
 function plusminus(button, tar) {
+    loaded = 0;
     if (flag == 1) {
         alert('请先确定是否保存');
         return;

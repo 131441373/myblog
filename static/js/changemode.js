@@ -1,4 +1,5 @@
 var flag = 0;
+var loaded = 0;
 
 function changemode() {
     if ($('#frame').attr('src') == "/static/documents/index.html") return;
@@ -7,7 +8,13 @@ function changemode() {
         $('#editor').css('display','block');
         $('#savebutton').css('display','block');
         var str = frame.src.replace(/\/article/,'').replace(/_/g,'/') + '.md';
-        $('#editor').load(str);
+        if (loaded == 0) {
+            $('#editor').load(str);
+            loaded = 1;
+        }
+        else {
+            document.getElementById('editor').value=document.getElementById('editor').defaultValue;
+        }
         $('#mdf').html('不保存');
         flag = 1;
     }
