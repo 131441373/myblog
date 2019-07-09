@@ -47,14 +47,13 @@ def getdir():
     return {'articlemenu':res}
 
 def pathchg(path):
-    path = path.replace('_', '/').strip('/')
+    path = path.replace('_', '/')
     return os.path.join(settings.BASE_DIR,path+'.md')
 
 def save(request, path):
     timestr = datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8))).strftime("%Y%m%d%H%M%S")
     path = pathchg(path)
     os.remove(path)
-    os.remove(path.split('.')[0] + '.html')
     path = os.path.join(os.path.dirname(path), 'index%s.md'%timestr)
     f = request.POST.get('file')
     with open(path, 'w') as F:

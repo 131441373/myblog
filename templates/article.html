@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/highlight/vs2015.css">
+    <script src="/static/highlight/highlight.pack.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body> 
     <div id="content" style="display:none">{{content|safe}}</div>
