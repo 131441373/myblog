@@ -6,7 +6,8 @@ function changemode() {
         $('#frame').css('display','none');
         $('#editor').css('display','block');
         $('#savebutton').css('display','block');
-        $('#editor').load(frame.src.replace(/html/,'md'));
+        var str = frame.src.replace(/\/article/,'').replace(/_/g,'/') + '.md';
+        $('#editor').load(str);
         $('#mdf').html('不保存');
         flag = 1;
     }

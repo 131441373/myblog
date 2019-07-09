@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="/static/css/highlights/github.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body> 
-{% load markdown_deux_tags %}
-{{ content | markdown }}
+    <div id="content" style="display:none">{{content|safe}}</div>
+    <div id="display"></div>
+    <script>
+        var str = document.getElementById('content').innerHTML;
+        document.getElementById('display').innerHTML = marked(str);
+    </script>
 </body>
 </html>

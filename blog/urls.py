@@ -71,4 +71,5 @@ urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
     url(r'^save/(\w+)', save),
     url(r'^article/(\w+)', display),
+    url(r'^test/', lambda request:render(request,'test.html')),
 ]
