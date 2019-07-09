@@ -3393,7 +3393,7 @@
             emailLink            : true,           // for mail address auto link
             taskList             : false,          // Enable Github Flavored Markdown task lists
             emoji                : false,          // :emoji: , Support Twemoji, fontAwesome, Editor.md logo emojis.
-            tex                  : false,          // TeX(LaTeX), based on KaTeX
+            tex                  : true,          // TeX(LaTeX), based on KaTeX
             flowChart            : false,          // flowChart.js only support IE9+
             sequenceDiagram      : false,          // sequenceDiagram.js only support IE9+
         };
@@ -3605,12 +3605,12 @@
             if (!isTeXLine && isTeXInline) 
             {
                 text = text.replace(/(\$\$([^\$]*)\$\$)+/g, function($1, $2) {
-                    return "<span class=\"" + editormd.classNames.tex + "\">" + $2.replace(/\$/g, "") + "</span>";
+                    return "<span class=\"" + editormd.classNames.tex + "\">" + '$'+$2.replace(/\$/g, "")+'$' + "</span>";
                 });
             } 
             else 
             {
-                text = (isTeXLine) ? text.replace(/\$/g, "") : text;
+            //    text = (isTeXLine) ? text.replace(/\$/g, "") : text;
             }
             
             var tocHTML = "<div class=\"markdown-toc editormd-markdown-toc\">" + text + "</div>";
@@ -4179,8 +4179,8 @@
     // 使用国外的CDN，加载速度有时会很慢，或者自定义URL
     // You can custom KaTeX load url.
     editormd.katexURL  = {
-        css : "/static/katex/katex.min",
-        js  : "/static/katex/katex.min"
+        css : "static/documents/mdeditor/katex.min",
+        js  : "static/documents/mdeditor/katex.min",
     };
     
     editormd.kaTeXLoaded = false;

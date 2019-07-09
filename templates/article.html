@@ -12,18 +12,25 @@
     <script src="/static/katex/contrib/auto-render.min.js"></script>
 </head>
 <body> 
-    <div id="content" style="display:none">{{content|safe}}</div>
+    <pre id="content" style="display:none">{{content|safe}}</pre>
     <div id="display"></div>
     <script>
     $(function() {
         var str = document.getElementById('content').innerHTML;
-        alert(str);
 	    var testView = editormd.markdownToHTML("display", {
             markdown : str,
             //htmlDecode : true,  // Enable / disable HTML tag encode.
             //htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
         });
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "\\[", right: "\\]", display: false},
+                {left: "$", right: "$", display: false},
+                {left: "\\(", right: "\\)", display: false}
+            ]
+        });
+        renderMathInElement(document.body);
     });
     </script>    
-    <script>renderMathInElement(document.body);</script>
 </body>
