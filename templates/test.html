@@ -12,14 +12,11 @@
     <script src="/static/katex/contrib/auto-render.min.js"></script>
 </head>
 <body> 
-    <div id="content" style="display:none">{{content|safe}}</div>
     <div id="display"></div>
     <script>
     $(function() {
-        var str = document.getElementById('content').innerHTML;
-        alert(str);
 	    var testView = editormd.markdownToHTML("display", {
-            markdown : str,
+            markdown : '$$e^x$$',
             //htmlDecode : true,  // Enable / disable HTML tag encode.
             //htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
         });
