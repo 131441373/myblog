@@ -16,7 +16,8 @@
     <div id="display"></div>
     <script>
     $(function() {
-        var str = document.getElementById('content').innerHTML;
+        var str = document.getElementById('content').innerText;
+        str = str.replace(/\\\\/g,'\\\\\\\\');
 	    var testView = editormd.markdownToHTML("display", {
             markdown : str,
             //htmlDecode : true,  // Enable / disable HTML tag encode.
