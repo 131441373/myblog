@@ -3,6 +3,7 @@ function save() {
     $('#editor').css('display','none');
     $('#savebutton').css('display','none');
     $('#mdf').html('修改');
-    $('#mdfile').attr('action','/save/' + $('#frame').attr('src').replace(/\/article\//,''))
+    var str = '/save/' + $('#frame').attr('src').replace(/\/article\//,'');
+    $.post(str, $('#mdfile').serialize());
     flag = 0;
 }
