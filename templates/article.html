@@ -19,7 +19,7 @@
         var str = document.getElementById('content').innerText;
         str = str.replace(/\\\\/g,'\\\\\\\\');
 	    var testView = editormd.markdownToHTML("display", {
-            markdown : str,
+            markdown : '[TOC]\n\n'+str,
             //htmlDecode : true,  // Enable / disable HTML tag encode.
             //htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
         });
