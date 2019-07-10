@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.shortcuts import render,HttpResponse
 from django.conf import settings
 import os
+import json
 from datetime import datetime, timezone, timedelta
 
 def dfs(path):
@@ -49,13 +50,12 @@ def getdir():
 def save(request, path):
     timestr = datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8))).strftime("%Y%m%d%H%M%S")
     path = path.replace('_', '/')
-    path = os.path.join(settings.BASE_DIR,path+'.md')
-    os.remove(path)
-    path = os.path.join(os.path.dirname(path), 'index%s.md'%timestr)
+    os.remove(os.path.join(settings.BASE_DIR,path+'.md'))
+    path = os.path.join(os.path.dirname(path), 'index%s'%timestr)
     f = request.POST.get('file')
-    with open(path, 'w') as F:
+    with open(os.path.join(settings.BASE_DIR,path+'.md'), 'w') as F:
         F.write(f)
-    return HttpResponse(path)
+    return HttpResponse(json.dumps({'path':'/article/'+path.replace('/','_')}))
 
 def display(request, path):
     path = path.replace('_', '/')
