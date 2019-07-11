@@ -3522,7 +3522,8 @@
                 }
             }
 
-            var out = "<a href=\"" + href + "\"";
+//            var out = "<a href=\"" + href + "\"";
+            var out = "<a onclick=\"window.open(\'"+href+"\',\'_blank\')\"";
             
             if (atLinkReg.test(title) || atLinkReg.test(text))
             {
