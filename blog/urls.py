@@ -18,6 +18,7 @@ from django.shortcuts import render,HttpResponse
 from django.conf import settings
 import os
 import json
+import shutil
 from datetime import datetime, timezone, timedelta
 
 def dfs(path):
@@ -75,6 +76,12 @@ def mkdir(request, path):
     res = res + "<dl id=\"%s\" style=\"display:none\">" % path + "</dl></dd>"
     return HttpResponse(json.dumps({'content':res, 'status':'Y'}))
 
+def rmdir(request, path):
+    path = path.replace('_', '/')
+    path = os.path.dirname(path)
+    shutil.rmtree(path) #os.rmdir只能删除空文件夹
+    return HttpResponse()
+
 def display(request, path):
     path = path.replace('_', '/')
     path = os.path.join(settings.BASE_DIR,path+'.md')
@@ -86,5 +93,6 @@ urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
     url(r'^save/(\w+)', save),
     url(r'^mkdir/(\w+)', mkdir),
+    url(r'^rmdir/(\w+)', rmdir),
     url(r'^article/(\w+)', display),
 ]

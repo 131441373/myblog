@@ -11,3 +11,11 @@ function mkdir() {
     },'JSON');
     cancel();
 }
+
+function rmdir() {
+    var str = $('#frame').attr('src').replace(/\/article\//,'');
+    $.post('/rmdir/'+str, $('#mkdir').serialize(),function(){
+        $('#'+str).parent().remove()
+    });
+    cancel();
+}

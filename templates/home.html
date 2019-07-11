@@ -29,8 +29,9 @@
                 {% csrf_token %}
                 <input id="dirname" type="text" name="foldername">
             </form>
-            <button id="confirm" onclick="mkdir()" style="position:absolute;bottom:0;left:175px">√</button>
-            <button id="cancel" onclick="cancel()" style="position:absolute;bottom:0;left:205px">×</button>
+            <button id="confirm" onclick="mkdir()" style="position:fixed;bottom:0;left:175px">新建</button>
+            <button id="cancel" onclick="cancel()" style="position:fixed;bottom:0;left:225px">取消</button>
+            <button id="delet" onclick="rmdir()" style="position:fixed;bottom:0;left:275px;color:red;">删除选中的文件夹</button>
         </div>
     </div>
 </body>
