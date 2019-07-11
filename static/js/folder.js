@@ -6,7 +6,8 @@ function cancel() {
 function mkdir() {
     var str = $('#frame').attr('src').replace(/\/article\//,'');
     $.post('/mkdir/'+str, $('#mkdir').serialize(),function(ret){
-        $('#'+str).append(ret.content);
+        if (ret.status == 'N') alert('文件名重复');
+        else $('#'+str).append(ret.content);
     },'JSON');
     cancel();
 }

@@ -65,6 +65,7 @@ def mkdir(request, path):
     foldername = request.POST.get('foldername')
     path = path.replace('_', '/')
     path = os.path.join(os.path.dirname(path), foldername)
+    if os.path.isdir(path): return HttpResponse(json.dumps({'content':'','status':'N'}))
     os.mkdir(path)
     path = os.path.join(path, 'index%s'%timestr)
     F = open(os.path.join(settings.BASE_DIR,path+'.md'),'w')
@@ -72,7 +73,7 @@ def mkdir(request, path):
     path = path.replace('/', '_')
     res = "<dd><p style=\"display:inline\" onclick=\"plusminus(this,\'%s\')\"><span>+</span>%s</p>" % (path, foldername)
     res = res + "<dl id=\"%s\" style=\"display:none\">" % path + "</dl></dd>"
-    return HttpResponse(json.dumps({'content':res}))
+    return HttpResponse(json.dumps({'content':res, 'status':'Y'}))
 
 def display(request, path):
     path = path.replace('_', '/')
