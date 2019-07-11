@@ -4,6 +4,7 @@
     <script src="/static/js/plusminus.js"></script>
     <script src="/static/js/changemode.js"></script>
     <script src="/static/js/save.js"></script>
+    <script src="/static/js/folder.js"></script>
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/menubar.css">
     <link rel="stylesheet" href="/static/css/content.css">
@@ -17,11 +18,19 @@
     
     <div id="content">
         <iframe id="frame" src="/static/documents/index.html"></iframe>
-        <form id="mdfile"">
+        <form id="mdfile">
             {% csrf_token %}
         </form>
         <button id="savebutton" onclick="save()" style="display:none; position:absolute; right:0; top:30px;">保存</button>
         <textarea id="editor" name="file" style="display:none" form="mdfile"></textarea>
         <button id="mdf" onclick="changemode()" style="position:absolute; top:0; right:0">修改</button>
+        <div id="dirbox" style="position:absolute;bottom:0;left:0;display:none">
+            <form id="mkdir" style="position:absolute;bottom:0;left:0">
+                {% csrf_token %}
+                <input id="dirname" type="text">
+            </form>
+            <button id="confirm" onclick="mkdir()" style="position:absolute;bottom:0;left:175px">√</button>
+            <button id="cancel" onclick="cancel()" style="position:absolute;bottom:0;left:205px">×</button>
+        </div>
     </div>
 </body>
