@@ -9,7 +9,10 @@ function changemode() {
         var str = frame.src.replace(/\/article/,'').replace(/_/g,'/') + '.md';
         $("#editor").load(str,function(responseTxt,statusTxt,xhr){
             if (statusTxt == "success")//必须加载完callback再设
-                document.getElementById('editor').value=document.getElementById('editor').defaultValue;
+                document.getElementById('editor').value=
+                document.getElementById('editor').defaultValue=
+                document.getElementById('editor').textContent=
+                document.getElementById('editor').innerHTML; //经测试innerHTML反而没过滤html标签
             else
                 alert("Error: "+xhr.status+": "+xhr.statusText);
         });
