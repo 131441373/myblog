@@ -13,9 +13,11 @@ function mkdir() {
 }
 
 function rmdir() {
-    var str = $('#frame').attr('src').replace(/\/article\//,'');
-    $.post('/rmdir/'+str, $('#mkdir').serialize(),function(){
-        $('#'+str).parent().remove()
-    });
-    cancel();
+    if (confirm("谨慎！确定要删除吗")==true) {
+        var str = $('#frame').attr('src').replace(/\/article\//,'');
+        $.post('/rmdir/'+str, $('#mkdir').serialize(),function(){
+            $('#'+str).parent().remove()
+        });
+        cancel();
+    }
 }
