@@ -59,7 +59,7 @@ def save(request, path):
     f = request.POST.get('file')
     with open(os.path.join(settings.BASE_DIR,path+'.md'), 'w') as F:
         F.write(f)
-    return HttpResponse(json.dumps({'path':'/article/'+path.replace('/','_')}))
+    return HttpResponse(json.dumps({'path':path.replace('/','_')}))
 
 def mkdir(request, path):
     timestr = gettime()

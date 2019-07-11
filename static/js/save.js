@@ -3,9 +3,11 @@ function save() {
     $('#editor').css('display','none');
     $('#savebutton').css('display','none');
     $('#mdf').html('修改');
-    var str = '/save/' + $('#frame').attr('src').replace(/\/article\//,'');
-    $.post(str, $('#mdfile').serialize(),function(ret){
-        $('#frame').attr('src', ret.path);
+    var str = $('#frame').attr('src').replace(/\/article\//,'');
+    $.post('/save/' + str, $('#mdfile').serialize(),function(ret){
+        $('#frame').attr('src', '/article/'+ret.path);
+        $('#'+str).prev().prev().attr('onclick',"plusminus(this,\'"+ret.path+"\')");
+        $('#'+str).attr('id', ret.path);
     },'JSON');
     flag = 0;
 }
