@@ -47,8 +47,11 @@ def getdir():
     res = res + "</dl>"
     return {'articlemenu':res}
 
+def gettime():
+    return datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8))).strftime("%Y%m%d%H%M%S")
+
 def save(request, path):
-    timestr = datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8))).strftime("%Y%m%d%H%M%S")
+    timestr = gettime()
     path = path.replace('_', '/')
     os.remove(os.path.join(settings.BASE_DIR,path+'.md'))
     path = os.path.join(os.path.dirname(path), 'index%s'%timestr)
@@ -56,6 +59,22 @@ def save(request, path):
     with open(os.path.join(settings.BASE_DIR,path+'.md'), 'w') as F:
         F.write(f)
     return HttpResponse(json.dumps({'path':'/article/'+path.replace('/','_')}))
+
+def mkdir(request, path):
+    timestr = gettime()
+    foldername = request.POST.get('foldername')
+    path = path.replace('_', '/')
+    path = os.path.join(os.path.dirname(path), foldername)
+    print("yahoo")
+    print(path)
+    os.mkdir(path)
+    path = os.path.join(path, 'index%s'%timestr)
+    F = open(os.path.join(settings.BASE_DIR,path+'.md'),'w')
+    F.close()
+    path = path.replace('/', '_')
+    res = "<dd><p onclick=\"plusminus(this,\'%s\')\"><span>+</span>%s</p>" % (path, foldername)
+    res = res + "<dl id=\"%s\" style=\"display:none\">" % path + "</dl></dd>"
+    return HttpResponse(json.dumps({'content':res}))
 
 def display(request, path):
     path = path.replace('_', '/')
@@ -67,5 +86,6 @@ def display(request, path):
 urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
     url(r'^save/(\w+)', save),
+    url(r'^mkdir/(\w+)', mkdir),
     url(r'^article/(\w+)', display),
 ]

@@ -4,5 +4,10 @@ function cancel() {
 }
 
 function mkdir() {
+    var str = $('#frame').attr('src').replace(/\/article\//,'');
+    $.post('/mkdir/'+str, $('#mkdir').serialize(),function(ret){
+        alert(ret.content);
+        $('#'+str).append(ret.content);
+    },'JSON');
     cancel();
 }

@@ -27,7 +27,7 @@
         <div id="dirbox" style="position:absolute;bottom:0;left:0;display:none">
             <form id="mkdir" style="position:absolute;bottom:0;left:0">
                 {% csrf_token %}
-                <input id="dirname" type="text">
+                <input id="dirname" type="text" name="foldername">
             </form>
             <button id="confirm" onclick="mkdir()" style="position:absolute;bottom:0;left:175px">√</button>
             <button id="cancel" onclick="cancel()" style="position:absolute;bottom:0;left:205px">×</button>
