@@ -26,7 +26,7 @@ def dfs(path):
         y = os.path.join(path,x)
         if os.path.isfile(y) and os.path.basename(y).split('.')[1]=='md':
             idname = (y.split('.')[0]).replace('/','_')
-            res = "<dd><p onclick=\"plusminus(this,\'%s\')\"><span>+</span>%s</p>" % (idname, os.path.basename(path))
+            res = "<dd><p style=\"display:inline\" onclick=\"plusminus(this,\'%s\')\"><span>+</span>%s</p>" % (idname, os.path.basename(path))
             res = res + "<dl id=\"%s\" style=\"display:none\">" % idname
     for x in l:
         y = os.path.join(path,x)
@@ -65,14 +65,12 @@ def mkdir(request, path):
     foldername = request.POST.get('foldername')
     path = path.replace('_', '/')
     path = os.path.join(os.path.dirname(path), foldername)
-    print("yahoo")
-    print(path)
     os.mkdir(path)
     path = os.path.join(path, 'index%s'%timestr)
     F = open(os.path.join(settings.BASE_DIR,path+'.md'),'w')
     F.close()
     path = path.replace('/', '_')
-    res = "<dd><p onclick=\"plusminus(this,\'%s\')\"><span>+</span>%s</p>" % (path, foldername)
+    res = "<dd><p style=\"display:inline\" onclick=\"plusminus(this,\'%s\')\"><span>+</span>%s</p>" % (path, foldername)
     res = res + "<dl id=\"%s\" style=\"display:none\">" % path + "</dl></dd>"
     return HttpResponse(json.dumps({'content':res}))
 

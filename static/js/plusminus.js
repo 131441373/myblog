@@ -16,14 +16,15 @@ function plusminus(button, tar) {
     }
     if (last != undefined) {
         last.style.background = "rgb(245, 245, 245)";
-        last.removeChild(last.children[1]);
+        last.nextSibling.remove();
     }
     button.style.background = "rgb(116, 236, 216)";
-    var node = document.createElement('span');
+    var node = document.createElement('button');
     node.style.float = "right";
+    node.style.display = "inline";
     node.innerHTML = "^";
     node.onclick = function() { $('#dirbox').css('display','block'); }
-    button.appendChild(node);
+    button.after(node);
     last = button;
 
     $('#frame').attr('src','/article/' + tar);
