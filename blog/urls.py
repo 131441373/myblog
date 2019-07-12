@@ -28,7 +28,8 @@ def dfs(path):
         if os.path.isfile(y) and os.path.basename(y).split('.')[1]=='md':
             idname = (y.split('.')[0]).replace('/','_')
             res = "<dd><p style=\"display:inline\" onclick=\"plusminus(this,\'%s\')\"><span>+</span>%s</p>" % (idname, os.path.basename(path))
-            res = res + "<dl id=\"%s\" style=\"display:none\">" % idname
+            if idname=="static_documents_zwl_index": res = res + "<dl id=\"%s\" style=\"display:block\">" % idname
+            else: res = res + "<dl id=\"%s\" style=\"display:none\">" % idname
     for x in l:
         y = os.path.join(path,x)
         if os.path.isdir(y):
