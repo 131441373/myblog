@@ -1,7 +1,7 @@
 var flag = 0;
 
 function changemode() {
-    if ($('#frame').attr('src') == "/static/documents/index.html") return;
+    if ($('#frame').attr('src') == "/static/documents/zwl/index.html") return;
     if ($('#editor').css('display') == 'none') {
         $('#frame').css('display','none');
         $('#editor').css('display','block');
