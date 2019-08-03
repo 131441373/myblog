@@ -12,7 +12,7 @@ function changemode() {
                 document.getElementById('editor').value=
                 document.getElementById('editor').defaultValue=
                 document.getElementById('editor').textContent=
-                document.getElementById('editor').innerHTML.replace(/\&amp;/g,'&').replace(/\&gt;/g,'>').replace(/\&lt;/,'<');
+                document.getElementById('editor').innerHTML.replace(/\&amp;/g,'&').replace(/\&gt;/g,'>').replace(/\&lt;/g,'<');
                 ; //经测试innerHTML反而没过滤html标签,但转义<>&
             }
             else
