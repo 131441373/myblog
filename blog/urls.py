@@ -88,8 +88,10 @@ def rename(request, path):
     path = os.path.dirname(path)
     foldername = request.POST.get('foldername')
     foldername = os.path.join(os.path.dirname(path), foldername)
+    if os.path.isdir(foldername):
+         return HttpResponse(json.dumps({'status':'N'}))
     os.rename(path, foldername)
-    return HttpResponse()
+    return HttpResponse(json.dumps({'status':'Y'}))
 
 def display(request, path):
     path = path.replace('_', '/')
