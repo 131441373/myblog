@@ -25,13 +25,14 @@
         <textarea id="editor" name="file" style="display:none" form="mdfile"></textarea>
         <button id="mdf" onclick="changemode()" style="position:absolute; top:0; right:0">修改</button>
         <div id="dirbox" style="position:absolute;bottom:0;left:0;display:none">
-            <form id="mkdir" style="position:absolute;bottom:0;left:0">
+            <form id="diropr" style="position:absolute;bottom:0;left:0">
                 {% csrf_token %}
                 <input id="dirname" type="text" name="foldername">
             </form>
             <button id="confirm" onclick="mkdir()" style="position:fixed;bottom:0;left:175px">新建</button>
             <button id="cancel" onclick="cancel()" style="position:fixed;bottom:0;left:225px">取消</button>
-            <button id="delet" onclick="rmdir()" style="position:fixed;bottom:0;left:275px;color:red;">删除选中的文件夹</button>
+            <button id="rename" onclick="rename()" style="position:fixed;bottom:0;left:275px;color:blue;">重命名</button>
+            <button id="delet" onclick="rmdir()" style="position:fixed;bottom:0;left:340px;color:red;">删除选中的文件夹</button>
         </div>
     </div>
 </body>

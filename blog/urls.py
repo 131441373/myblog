@@ -83,6 +83,14 @@ def rmdir(request, path):
     shutil.rmtree(path) #os.rmdir只能删除空文件夹
     return HttpResponse()
 
+def rename(request, path):
+    path = path.replace('_', '/')
+    path = os.path.dirname(path)
+    foldername = request.POST.get('foldername')
+    foldername = os.path.join(os.path.dirname(path), foldername)
+    os.rename(path, foldername)
+    return HttpResponse()
+
 def display(request, path):
     path = path.replace('_', '/')
     path = os.path.join(settings.BASE_DIR,path+'.md')
@@ -95,5 +103,6 @@ urlpatterns = [
     url(r'^save/(\w+)', save),
     url(r'^mkdir/(\w+)', mkdir),
     url(r'^rmdir/(\w+)', rmdir),
+    url(r'^rename/(\w+)', rename),
     url(r'^article/(\w+)', display),
 ]
