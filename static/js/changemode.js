@@ -22,10 +22,12 @@ function changemode() {
         flag = 1;
     }
     else {
-        $('#frame').css('display','block');
-        $('#editor').css('display','none');
-        document.getElementById("savebutton").style.display="none";
-        $('#mdf').html('修改');
-        flag = 0;
+        if (confirm("确定不保存么") == true) { 
+            $('#frame').css('display','block');
+            $('#editor').css('display','none');
+            document.getElementById("savebutton").style.display="none";
+            $('#mdf').html('修改');
+            flag = 0;
+        }
     }
 }
