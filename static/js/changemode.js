@@ -31,3 +31,7 @@ function changemode() {
         }
     }
 }
+
+window.onbeforeunload = function() {
+    if (flag == 1) return "确定离开?";
+}
