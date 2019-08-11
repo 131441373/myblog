@@ -6,7 +6,7 @@ function changemode() {
         $('#frame').css('display','none');
         $('#editor').css('display','block');
         $('#savebutton').css('display','block');
-        var str = frame.src.replace(/\/article/,'').replace(/_/g,'/') + '.md';
+        var str = frame.src.replace(/\/article/,'').replace(/_PlUs_/g,'+').replace(/_/g,'/') + '.md';
         $("#editor").load(str,function(responseTxt,statusTxt,xhr){
             if (statusTxt == "success") {//必须加载完callback再设
                 document.getElementById('editor').value=

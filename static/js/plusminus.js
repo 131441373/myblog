@@ -27,5 +27,6 @@ function plusminus(button, tar) {
     button.after(node);
     last = button;
 
+    tar = tar.replace(/\+/g,'_PlUs_');
     $('#frame').attr('src','/article/' + tar);
 }

@@ -53,6 +53,7 @@ def gettime():
     return datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=8))).strftime("%Y%m%d%H%M%S")
 
 def save(request, path):
+    path = path.replace('_PlUs_', '+')
     timestr = gettime()
     path = path.replace('_', '/')
     os.remove(os.path.join(settings.BASE_DIR,path+'.md'))
@@ -63,6 +64,7 @@ def save(request, path):
     return HttpResponse(json.dumps({'path':path.replace('/','_')}))
 
 def mkdir(request, path):
+    path = path.replace('_PlUs_', '+')
     timestr = gettime()
     foldername = request.POST.get('foldername')
     path = path.replace('_', '/')
@@ -78,12 +80,14 @@ def mkdir(request, path):
     return HttpResponse(json.dumps({'content':res, 'status':'Y'}))
 
 def rmdir(request, path):
+    path = path.replace('_PlUs_', '+')
     path = path.replace('_', '/')
     path = os.path.dirname(path)
     shutil.rmtree(path) #os.rmdir只能删除空文件夹
     return HttpResponse()
 
 def rename(request, path):
+    path = path.replace('_PlUs_', '+')
     path = path.replace('_', '/')
     path = os.path.dirname(path)
     foldername = request.POST.get('foldername')
@@ -94,6 +98,7 @@ def rename(request, path):
     return HttpResponse(json.dumps({'status':'Y'}))
 
 def display(request, path):
+    path = path.replace('_PlUs_', '+')
     path = path.replace('_', '/')
     path = os.path.join(settings.BASE_DIR,path+'.md')
     with open(path, 'r') as F:
