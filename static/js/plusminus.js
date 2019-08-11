@@ -23,7 +23,13 @@ function plusminus(button, tar) {
     node.style.float = "right";
     node.style.display = "inline";
     node.innerHTML = "^";
-    node.onclick = function() { $('#dirbox').css('display','block'); }
+    node.onclick = function() {
+        $('#dirbox').css('display','block');
+        if (this.nextSibling.style.display=="none") {
+            target.style.display = "block";
+            button.firstChild.innerHTML = '-';
+        }
+    }
     button.after(node);
     last = button;
 

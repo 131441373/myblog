@@ -20,7 +20,7 @@ function rmdir() {
         var str = $('#frame').attr('src').replace(/\/article\//,'');
         $.post('/rmdir/'+str, $('#diropr').serialize(),function(){
             str = str.replace(/_PlUs_/g,'\\+'); // 注意转义符，否则选择器对+有别的理解
-            $('#'+str).parent().remove()
+            $('#'+str).parent().remove(); // parent是<dd>
         });
         cancel();
     }
