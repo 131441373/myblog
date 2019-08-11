@@ -6,7 +6,7 @@ function save() {
     var str = $('#frame').attr('src').replace(/\/article\//,'');
     $.post('/save/' + str, $('#mdfile').serialize(),function(ret){
         $('#frame').attr('src', '/article/'+ret.path.replace(/\+/g,'_PlUs_'));
-        str = str.replace(/_PlUs_/g,'\\+');
+        str = str.replace(/_PlUs_/g,'\\+'); // 注意转义符，否则选择器对+有别的理解
         $('#'+str).prev().prev().attr('onclick',"plusminus(this,\'"+ret.path+"\')");
         $('#'+str).attr('id', ret.path);
     },'JSON');
