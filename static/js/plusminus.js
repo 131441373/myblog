@@ -29,4 +29,5 @@ function plusminus(button, tar) {
 
     tar = tar.replace(/\+/g,'_PlUs_');
     $('#frame').attr('src','/article/' + tar);
+    cancel();
 }
