@@ -22,3 +22,10 @@ function insertText(obj,str) {
         obj.value += str;
     }
 }
+
+function ifenter(folder, e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        mkdir();
+    }
+}

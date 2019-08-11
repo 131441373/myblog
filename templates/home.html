@@ -5,7 +5,7 @@
     <script src="/static/js/changemode.js"></script>
     <script src="/static/js/save.js"></script>
     <script src="/static/js/folder.js"></script>
-    <script src="/static/js/tabineditor.js"></script>
+    <script src="/static/js/text.js"></script>
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/menubar.css">
     <link rel="stylesheet" href="/static/css/content.css">
@@ -30,7 +30,7 @@
         <div id="dirbox" style="position:absolute;bottom:0;left:0;display:none">
             <form id="diropr" style="position:absolute;bottom:0;left:0">
                 {% csrf_token %}
-                <input id="dirname" type="text" name="foldername">
+                <input id="dirname" type="text" name="foldername" onkeydown="ifenter(this,event)">
             </form>
             <button id="confirm" onclick="mkdir()" style="position:fixed;bottom:0;left:175px">新建</button>
             <button id="cancel" onclick="cancel()" style="position:fixed;bottom:0;left:225px">取消</button>
