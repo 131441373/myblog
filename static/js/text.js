@@ -1,7 +1,7 @@
 function iftab(editor, e) {
     if (e.keyCode == 9) {
         e.preventDefault();
-        insertText(editor, '\t');
+        insertText(editor, '  ');//'\t');
     }
 }
 function insertText(obj,str) {

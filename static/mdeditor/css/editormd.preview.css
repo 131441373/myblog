@@ -3348,6 +3348,7 @@ li.L9 {
   border: none;
   background: none;
   padding: 0;
+  tab-size:2;
 }
 
 .editormd-preview-container .editormd-toc-menu, .editormd-html-preview .editormd-toc-menu {
