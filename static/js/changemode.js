@@ -19,6 +19,7 @@ function changemode() {
                 alert("Error: "+xhr.status+": "+xhr.statusText);
         });
         $('#mdf').html('不保存');
+        $('#editor').focus();
         flag = 1;
     }
     else {

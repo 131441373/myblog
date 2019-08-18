@@ -29,6 +29,7 @@ function plusminus(button, tar) {
             target.style.display = "block";
             button.firstChild.innerHTML = '-';
         }
+        $('#dirname').focus();
     }
     button.after(node);
     last = button;
