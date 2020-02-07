@@ -20,6 +20,7 @@ import os
 import json
 import shutil
 from datetime import datetime, timezone, timedelta
+import numpy as np
 
 def dfs(path):
     l = os.listdir(path)
@@ -105,6 +106,23 @@ def display(request, path):
         f = F.read()
     return render(request,'article.html',{'content':f})
 
+def androidappGet(request, path):
+    path = os.path.join(settings.BASE_DIR,'static/androidapp/'+path+'.txt')
+    with open(path, 'r') as F:
+        f = F.read()
+    return HttpResponse(json.dumps({'status':f}))
+
+def androidapp(request, path):
+    path = os.path.join(settings.BASE_DIR,'static/androidapp/'+path+'.json')
+    if request.method == 'POST':
+        with open(path, 'w') as F:
+            json.dump(json.loads(request.body), F, ensure_ascii=False)
+        return HttpResponse('success\n')
+    elif request.method == 'GET':
+        with open(path, 'r') as F:
+            Dict = json.load(F)
+        return HttpResponse(json.dumps({'status':Dict['status'], 'cur':Dict['cur'], 'total':Dict['total']}, ensure_ascii=False)+'\n')
+
 urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
     url(r'^save/(\w+)', save),
@@ -112,4 +130,5 @@ urlpatterns = [
     url(r'^rmdir/(\w+)', rmdir),
     url(r'^rename/(\w+)', rename),
     url(r'^article/(\w+)', display),
+    url(r'^androidapp/(\w+)', androidapp)
 ]
