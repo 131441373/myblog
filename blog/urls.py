@@ -112,19 +112,16 @@ def androidappGet(request, path):
         f = F.read()
     return HttpResponse(json.dumps({'status':f}))
 
-def postjson(request):
-    Dict = json.loads(request.body.decode())
-    path = os.path.join(settings.BASE_DIR,'static/androidapp/'+Dict.get("usr")+'.json')
-    print(path)
-    with open(path, 'w') as F:
-        json.dump(Dict, F, ensure_ascii=False)
-    return HttpResponse('success\n')
-
-def getjson(request, path):
+def dealjson(request, path):
     path = os.path.join(settings.BASE_DIR,'static/androidapp/'+path+'.json')
-    with open(path, 'r') as F:
-        Dict = json.load(F)
-    return HttpResponse(json.dumps(Dict, ensure_ascii=False)+'\n')
+    if request.method == 'POST':
+        with open(path, 'w') as F:
+            json.dump(json.loads(request.body.decode()), F, ensure_ascii=False)
+        return HttpResponse('success\n')
+    elif request.method == 'GET':
+        with open(path, 'r') as F:
+            Dict = json.load(F)
+        return HttpResponse(json.dumps(Dict, ensure_ascii=False)+'\n')
 
 urlpatterns = [
     url(r'^home/', lambda request:render(request,'home.html',getdir())),
@@ -133,6 +130,5 @@ urlpatterns = [
     url(r'^rmdir/(\w+)', rmdir),
     url(r'^rename/(\w+)', rename),
     url(r'^article/(\w+)', display),
-    url(r'^androidapp/post', postjson),
-    url(r'^androidapp/(\w+)', getjson),
+    url(r'^androidapp/(\w+)', dealjson),
 ]

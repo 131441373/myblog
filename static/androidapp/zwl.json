@@ -1,1 +1,1 @@
-{"status": "xwx", "list": [{"time": "2h", "task": "1"}, {"time": "3h", "task": "2"}], "usr": "zwl"}
+{"status": "available", "list": [{"name": "zwl2", "time": 0, "status": -1}, {"name": "zwl1", "time": 8, "status": 0}]}
