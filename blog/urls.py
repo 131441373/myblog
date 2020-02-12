@@ -24,6 +24,7 @@ import numpy as np
 
 def dfs(path):
     l = os.listdir(path)
+    l.sort()
     for x in l:
         y = os.path.join(path,x)
         if os.path.isfile(y) and os.path.basename(y).split('.')[1]=='md':
@@ -43,6 +44,7 @@ def getdir():
     res = "<dl>"
     path = "static/documents"
     l = os.listdir(path)
+    l.sort()
     for x in l:
         y = os.path.join(path, x)
         if os.path.isdir(y):
